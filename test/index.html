@@ -3,14 +3,18 @@
 <head>
   <title></title>
   <link rel="stylesheet" href="../bower_components/mocha/mocha.css" />
-  <script src="../bower_components/mousetrap/mousetrap.js"></script>
-  <script src="../scoped-mousetrap.js"></script>
   <script src="../bower_components/mocha/mocha.js"></script>
   <script src="../bower_components/chai/chai.js"></script>
+  <script src="../bower_components/sinon/lib/sinon.js"></script>
+  <script src="../bower_components/sinon/lib/sinon/call.js"></script>
+  <script src="../bower_components/sinon/lib/sinon/spy.js"></script>
+  <script src="../bower_components/sinon/lib/sinon/stub.js"></script>
   <script>
     var assert = chai.assert;
     mocha.setup('tdd');
   </script>
+  <script src="../bower_components/mousetrap/mousetrap.js"></script>
+  <script src="../scoped-mousetrap.js"></script>
 </head>
 <body>
   <div id="mocha"></div>
@@ -18,7 +22,7 @@
   <script>
     if (window.navigator.userAgent.indexOf('PhantomJS') === -1) {
       mocha.checkLeaks();
-      //mocha.globals([]);
+      mocha.globals(['Mousetrap', 'ScopedMousetrap']);
       mocha.run();
     }
   </script>

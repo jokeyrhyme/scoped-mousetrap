@@ -14,11 +14,66 @@
 }(this, function (Mousetrap) {
   'use strict';
 
-  var ScopedMousetrap;
+  var scopes, binds;
 
-  ScopedMousetrap = {};
+  scopes = [];
 
-  Mousetrap.reset();
+  binds = {};
 
-  return ScopedMousetrap;
+  return {
+
+    /**
+     * @param {(String|Array)} key
+     * @param {String} [scope=*]
+     * @param {Function} handler
+     */
+    on: function on(key, scope, handler) {
+      if (handler === undefined) {
+        handler = scope;
+        scope = '*';
+      }
+      if (typeof key === 'string' && key) {
+        binds[scope] = binds[scope] || {};
+        binds[scope][key] = handler;
+
+      } else if (Array.isArray(key)) {
+        key.forEach(function (k) {
+          on(k, handler);
+        });
+      }
+    },
+
+    /**
+     *
+     * @param {(Array|String)} [scope] specify for set, omit for get
+     * @returns {Array} of current scopes (get) or previous (set)
+     */
+    scopes: function (scope) {
+      if (scope === undefined) {
+        return scopes;
+      }
+      if (typeof scope === 'string' && scope) {
+        scope = [scope];
+      }
+      if (Array.isArray(scope)) {
+        scopes = scope;
+        Mousetrap.reset();
+      }
+      return scopes;
+    },
+
+    /**
+     * retrieve all bound keys, grouped by scope
+     * @returns {Object}
+     */
+    binds: function () {
+      var out;
+      out = {};
+      Object.keys(binds).forEach(function (scope) {
+        out[scope] = Object.keys(binds[scope]);
+      });
+      return out;
+    }
+
+  };
 }));
