@@ -1,0 +1,29 @@
+{
+  "name": "scoped-mousetrap",
+  "version": "0.0.0",
+  "description": "add support for switching scopes to Mousetrap https://github.com/ccampbell/mousetrap",
+  "main": "scoped-mousetrap.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jokeyrhyme/scoped-mousetrap"
+  },
+  "keywords": [
+    "events",
+    "keyboard",
+    "keybind"
+  ],
+  "author": "Ron Waldon <jokeyrhyme@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jokeyrhyme/scoped-mousetrap/issues"
+  },
+  "homepage": "https://github.com/jokeyrhyme/scoped-mousetrap",
+  "devDependencies": {
+    "grunt": "~0.4",
+    "grunt-jslint": "~1.1",
+    "grunt-mocha": "~0.4"
+  }
+}

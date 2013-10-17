@@ -1,0 +1,30 @@
+{
+  "name": "scoped-mousetrap",
+  "version": "0.0.0",
+  "authors": [
+    "Ron Waldon <jokeyrhyme@gmail.com>"
+  ],
+  "description": "add support for switching scopes to Mousetrap https://github.com/ccampbell/mousetrap",
+  "main": "scoped-mousetrap.js",
+  "keywords": [
+    "events",
+    "keyboard",
+    "keybind"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jokeyrhyme/scoped-mousetrap",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mousetrap": "~1.4"
+  },
+  "devDependencies": {
+    "chai": "~1.8",
+    "mocha": "~1.13"
+  }
+}
