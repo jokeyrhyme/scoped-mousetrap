@@ -14,11 +14,29 @@
 }(this, function (Mousetrap) {
   'use strict';
 
-  var scopes, binds;
+  var scopes, binds, activeBinds, updateMousetrap;
 
   scopes = [];
 
   binds = {};
+
+  activeBinds = [];
+
+  updateMousetrap = function () {
+    var s, sLength, key, scope;
+    Mousetrap.reset();
+    activeBinds = [];
+    sLength = scopes.length;
+    for (s = 0; s < sLength; s += 1) {
+      scope = scopes[s];
+      for (key in binds[scope]) {
+        if (binds[scope].hasOwnProperty(key)) {
+          Mousetrap.bind(key, binds[scope][key]);
+          activeBinds.push(key);
+        }
+      }
+    }
+  };
 
   return {
 
@@ -38,28 +56,30 @@
 
       } else if (Array.isArray(key)) {
         key.forEach(function (k) {
-          on(k, handler);
+          on(k, scope, handler);
         });
       }
     },
 
     /**
      *
-     * @param {(Array|String)} [scope] specify for set, omit for get
+     * @param {Array} [scope] specify for set, omit for get
      * @returns {Array} of current scopes (get) or previous (set)
      */
     scopes: function (scope) {
+      var original;
       if (scope === undefined) {
         return scopes;
       }
+      original = scopes;
       if (typeof scope === 'string' && scope) {
-        scope = [scope];
+        scopes = [scope];
       }
       if (Array.isArray(scope)) {
         scopes = scope;
-        Mousetrap.reset();
       }
-      return scopes;
+      updateMousetrap();
+      return original;
     },
 
     /**
@@ -73,6 +93,20 @@
         out[scope] = Object.keys(binds[scope]);
       });
       return out;
+    },
+
+    /**
+     * retrieve only currently-bound keys
+     * @returns {Array}
+     */
+    activeBinds: function () {
+      return activeBinds;
+    },
+
+    reset: function () {
+      scopes = [];
+      binds = {};
+      updateMousetrap();
     }
 
   };
