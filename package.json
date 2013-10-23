@@ -1,6 +1,6 @@
 {
   "name": "scoped-mousetrap",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "add support for switching scopes to Mousetrap https://github.com/ccampbell/mousetrap",
   "main": "scoped-mousetrap.js",
   "scripts": {
