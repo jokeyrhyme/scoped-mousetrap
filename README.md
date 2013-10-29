@@ -76,7 +76,7 @@ New code should be merged into the develop branch.
 
 ## Release History
 
-See [GitHub Releases](https://github.com/jokeyrhyme/json-fs/releases)
+See [GitHub Releases](https://github.com/jokeyrhyme/scoped-mousetrap/releases)
 
 ## License
 
